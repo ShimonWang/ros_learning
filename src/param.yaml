@@ -1,0 +1,14 @@
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_asus__40593: http://ASUS:40593/
+rosversion: '1.17.0
+
+  '
+run_id: a3a8423c-1c4f-11f0-a748-2de47008d158
+turtlesim:
+  background_b: 0
+  background_g: 0
+  background_r: 0
