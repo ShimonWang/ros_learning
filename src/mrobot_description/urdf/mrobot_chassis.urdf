@@ -1,22 +1,35 @@
 <?xml version="1.0" ?>
 <robot name="mrobot_chassis">
+<!-- 机器人描述文件中的根元素必须是robot，所有其他元素必须被包含在其中 -->
 
     <link name="base_link">
+    <!-- <link>元素描述了一个具有惯性、视觉特征和碰撞属性的刚体；name:link本身的名称 -->
         <visual>
+        <!-- link的视觉属性 -->
             <origin xyz=" 0 0 0" rpy="0 0 0" />
+            <!-- visual元素相对于link参考系的参考系 -->
             <geometry>
+            <!-- visual对象的形状 -->
                 <cylinder length="0.005" radius="0.13"/>
+                <!-- 指定半径和长度，圆柱体的原点在其中心 -->
             </geometry>
             <material name="yellow">
+            <!-- visual元素的材料；name:材料的名称 -->
                 <color rgba="1 0.4 0 1"/>
+                <!-- rgba指定颜色的方式，由一组四个数字表示红/绿/蓝/透明度，每个数字范围为[0,1] -->
             </material>
         </visual>
     </link>
 
     <joint name="base_left_motor_joint" type="fixed">
-        <origin xyz="-0.055 0.075 0" rpy="0 0 0" />        
+    <!-- joint元素描述了关节的运动学和动力学属性，并指定了关节的安全限制；name:指定关节的唯一名称；type:指定关节的类型 -->
+        <origin xyz="-0.055 0.075 0" rpy="0 0 0" />
+        <!-- 这是parent link到child link的变换。关节位于child link的原点；xyz:表示x、y、z偏移量；rpy:表示绕固定轴的旋转
+        首先绕x轴进行回转（roll），然后绕y轴进行俯仰（pitch），最后绕z轴进行偏转（yaw） -->
         <parent link="base_link"/>
+        <!-- 父链接的名称，具有必填属性 -->
         <child link="left_motor" />
+        <!-- 自链接名称带强制属性 -->
     </joint>
 
     <link name="left_motor">
@@ -36,6 +49,7 @@
         <parent link="left_motor"/>
         <child link="left_wheel_link"/>
         <axis xyz="0 1 0"/>
+        <!-- axis:在关节坐标系中指定的关节轴；xyz:表示向量的(x,y,z)分量。该向量应被归一化 -->
     </joint>
 
     <link name="left_wheel_link">
@@ -98,6 +112,7 @@
             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <sphere radius="0.0165" />
+                <!-- 指定半径。球的原点在其中心 -->
             </geometry>
             <material name="black">
                 <color rgba="0 0 0 0.95"/>
